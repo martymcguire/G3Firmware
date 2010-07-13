@@ -7,7 +7,7 @@ MCU = atmega168
 ADMCU = m168
 F_CPU = 16000000L
 
-PORT = /dev/ttyUSB1
+PORT = /dev/tty.usbserial-FTE3N30L
 UPLOAD_RATE = 19200
 AVRDUDE_PROGRAMMER = stk500v1
 
@@ -69,9 +69,10 @@ LDFLAGS = -lm
 # Programming support using avrdude. Settings and variables.
 AVRDUDE_PORT = $(PORT)
 AVRDUDE_WRITE_FLASH = -U flash:w:build/$(TARGET).hex
+AVRDUDE_CONFIG = $(ARDUINO_HOME)/hardware/tools/avr/etc/avrdude.conf
 AVRDUDE_FLAGS = -V -F  \
 -p $(ADMCU) -P $(AVRDUDE_PORT) -c $(AVRDUDE_PROGRAMMER) \
--b $(UPLOAD_RATE)
+-b $(UPLOAD_RATE) -C $(AVRDUDE_CONFIG)
 
 # Program settings
 CC = $(AVR_TOOLS_PATH)/avr-gcc
