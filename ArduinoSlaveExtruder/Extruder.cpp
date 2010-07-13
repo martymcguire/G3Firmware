@@ -102,6 +102,11 @@ void init_extruder()
   digitalWrite(VALVE_PIN, LOW);
 #endif
 
+#ifdef HAS_CAMERA
+  pinMode(CAMERA_PIN, OUTPUT);
+  digitalWrite(CAMERA_PIN, LOW);
+#endif
+
   //setup our debug pin.
   pinMode(DEBUG_PIN, OUTPUT);
   digitalWrite(DEBUG_PIN, HIGH);
@@ -301,6 +306,15 @@ void open_valve()
 void close_valve()
 {
   digitalWrite(VALVE_PIN, LOW);
+}
+#endif
+
+#if HAS_CAMERA
+void trigger_camera() {
+  digitalWrite(CAMERA_PIN, HIGH);
+}
+void stop_triggering_camera() {
+  digitalWrite(CAMERA_PIN, LOW);
 }
 #endif
 

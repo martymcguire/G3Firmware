@@ -42,6 +42,11 @@
 #define MOTOR_FORWARD_DURATION 300
 
 /****************************************************************************************
+ * Is there a camera?
+ ****************************************************************************************/
+#define HAS_CAMERA 1
+
+/****************************************************************************************
  * Is there a heated build platform?
  ****************************************************************************************/
  
@@ -108,6 +113,9 @@
 
 //#define SERVO1_PIN 9
 //#define SERVO2_PIN 10
+#if HAS_CAMERA
+#define CAMERA_PIN 9
+#endif
 
 #define EXTRUDER_HEATER_PIN 11
 #define EXTRUDER_THERMISTOR_PIN 3

@@ -28,4 +28,7 @@ byte is_tool_ready();
 
 void manage_motor1_speed();
 
+void trigger_camera();
+void stop_triggering_camera();
+
 #endif // EXTRUDER_H

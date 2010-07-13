@@ -44,6 +44,8 @@ SimplePacket masterPacket(rs485_tx);
 #define SLAVE_CMD_GET_PLATFORM_TEMP     30
 #define SLAVE_CMD_SET_PLATFORM_TEMP     31
 
+#define SLAVE_CMD_TOGGLE_CAMERA          34
+
 void handle_query();
 void send_reply();
 
@@ -275,7 +277,16 @@ void handle_query()
       close_valve();
     break;
 #endif
-
+#ifdef HAS_CAMERA
+  case SLAVE_CMD_TOGGLE_CAMERA:
+    temp = masterPacket.get_8(2);
+    if (temp & 1)
+      trigger_camera();
+    else
+      stop_triggering_camera();
+    break;
+  break;
+#endif
   //WORKING
   case SLAVE_CMD_SET_SERVO_1_POS:
 #ifdef HAS_SERVOS
